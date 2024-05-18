@@ -4,19 +4,19 @@ import GlobalFeedbacks from "./_components/global-feedbacks";
 import RatingCard from "./_components/rating-card";
 import UserFeedbacks from "./_components/user-feedbacks";
 import ReviewCard from "./_components/review-card";
-import { SharedUserDataProps } from "@/types/db";
 import {
   globalRandomReviews,
   initialRateProgress,
   userRandomReviews,
 } from "../data";
+import { UserDataProps } from "@/types/db";
 
 export type RatesProps = {
   rate: number;
   id: number;
 };
 
-export type GlobalReviewProps = ReviewProps & SharedUserDataProps;
+export type GlobalReviewProps = ReviewProps & UserDataProps;
 
 export type ReviewProps = {
   id: number;
@@ -85,8 +85,8 @@ const Feedback = () => {
 
   return (
     <section>
-      <div className="grid 2xl:grid-cols-[1fr_400px] gap-4 lg:gap-6">
-        <div className="flex flex-col gap-4 lg:gap-6">
+      <div className="grid 2xl:grid-cols-[1fr_400px] gap-4 p-6 md:p-8">
+        <div className="flex flex-col gap-4">
           <ReviewCard
             setUserReviews={setUserReviews}
             setRates={setRates}
@@ -95,7 +95,7 @@ const Feedback = () => {
           <UserFeedbacks reviews={userReviews} />
         </div>
         <div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-1 gap-4 lg:gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-1 gap-4">
             <RatingCard rates={rates} rateProgress={rateProgress} />
             <GlobalFeedbacks reviews={globalReviews} />
           </div>

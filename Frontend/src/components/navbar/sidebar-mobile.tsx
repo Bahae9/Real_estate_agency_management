@@ -1,4 +1,4 @@
-import { CircleGauge, LogOut, Menu, Package2 } from "lucide-react";
+import { CircleGauge, Power, Settings, Menu, Package2 } from "lucide-react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 
 import { Button, buttonVariants } from "@/components/ui/button";
@@ -95,15 +95,34 @@ const SidebarMobile = ({
             )}
           </div>
         </nav>
-        <div className="mt-auto w-full">
+        <div className="mt-auto w-full space-y-1">
           {isAuth ? (
-            <Button
-              variant={"ghost"}
-              className="justify-start gap-2 items-center w-full hover:bg-destructive hover:text-destructive-foreground"
-            >
-              <LogOut className="h-5 w-5" />
-              Déconnexion
-            </Button>
+            <>
+              <NavLink
+                to={"/edit-profile"}
+                end
+                className={cn(
+                  buttonVariants({
+                    variant: isActiveSideBar(pathname, "/edit-profile")
+                      ? "default"
+                      : "ghost",
+                  }),
+                  "justify-start gap-2 items-center",
+                  !isActiveSideBar(pathname, "/edit-profile") &&
+                    "hover:bg-primary/10"
+                )}
+              >
+                <Settings className="h-5 w-5" />
+                Modifier le profil
+              </NavLink>
+              <Button
+                variant={"ghost"}
+                className="justify-start gap-2 items-center w-full hover:bg-destructive hover:text-destructive-foreground"
+              >
+                <Power className="h-5 w-5" />
+                Déconnexion
+              </Button>
+            </>
           ) : (
             <Button className="w-full" variant={"link"} asChild>
               <Link to={"/signup"}>S'inscrire</Link>

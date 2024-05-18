@@ -13,27 +13,53 @@ import { cn } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { MoveLeft } from "lucide-react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { DEFAULT_SIGNUP_VALUES, SignupValues, signupSchema } from "./data";
+import { useAuth } from "@/components/contexts/auth-context";
 
 export default function Signup() {
+  const navigate = useNavigate();
   const form = useForm<SignupValues>({
     resolver: zodResolver(signupSchema),
-    mode: "onBlur",
+    mode: "onChange",
     defaultValues: DEFAULT_SIGNUP_VALUES,
   });
-
-  function onSubmit(data: SignupValues) {
-    toast({
-      title: "You submitted the following values:",
-      description: (
-        <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-          <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-        </pre>
-      ),
-    });
+  const { token } = useAuth();
+  if (token) {
+    return <Navigate to={"/"} />;
   }
-
+  function onSubmit(data: SignupValues) {
+    fetch("http://localhost:8080/auth/signup", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          return response.json().then((error) => {
+            throw new Error(
+              error.message || "Failed to sign up. Please try again later."
+            );
+          });
+        }
+        return response.json();
+      })
+      .then(() => {
+        toast({
+          description: "Sign up successful! You can now log in.",
+          variant: "success",
+        });
+        navigate("/login");
+      })
+      .catch((e) => {
+        toast({
+          description: e.message,
+          variant: "destructive",
+        });
+      });
+  }
   return (
     <div className="w-full lg:grid lg:grid-cols-2 min-h-screen">
       <div className="flex flex-col p-4 min-h-screen">

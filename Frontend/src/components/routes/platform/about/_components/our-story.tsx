@@ -27,8 +27,8 @@ const COMPANY_HISTORY = [
 
 const OurStory = () => {
   return (
-    <section>
-      <div className="container max-w-6xl px-4 md:px-6">
+    <section className="py-20 min-h-[calc(100vh-56px)] lg:min-h-[calc(100vh-60px)] flex justify-center items-center bg-muted">
+      <div className="container max-w-7xl px-4 md:px-6">
         <div className="flex flex-col items-center justify-center gap-4 text-center">
           <h2 className="text-4xl font-semibold sm:text-5xl">
             L'histoire de Notre Agence
@@ -38,10 +38,10 @@ const OurStory = () => {
             sont prêts à vous accompagner dans tous vos projets immobiliers.
           </p>
         </div>
-        <div className="mx-auto grid grid-cols-1 gap-4 pt-10 sm:grid-cols-2 lg:gap-8">
+        <div className="mx-auto grid grid-cols-1 gap-4 pt-10 sm:grid-cols-2">
           {COMPANY_HISTORY.map(({ description, title, year }) => (
             <div
-              className="rounded-lg border p-6 shadow-sm transition-all"
+              className="rounded-lg border p-6 shadow-sm transition-all bg-white"
               key={year}
             >
               <div className="space-y-2">

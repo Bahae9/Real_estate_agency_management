@@ -96,7 +96,7 @@ module.exports = {
       base: [
         "1rem",
         {
-          lineHeight: "1.5rem",
+          lineHeight: "1.4rem",
         },
       ],
       lg: [
@@ -120,7 +120,7 @@ module.exports = {
       "3xl": [
         "1.875rem",
         {
-          lineHeight: "2.25rem",
+          lineHeight: "2rem",
         },
       ],
       "4xl": [
@@ -132,31 +132,31 @@ module.exports = {
       "5xl": [
         "3rem",
         {
-          lineHeight: "3.5rem",
+          lineHeight: "3.25rem",
         },
       ],
       "6xl": [
         "3.75rem",
         {
-          lineHeight: "1rem",
+          lineHeight: "3.75rem",
         },
       ],
       "7xl": [
         "4.5rem",
         {
-          lineHeight: "1rem",
+          lineHeight: "3.75rem",
         },
       ],
       "8xl": [
         "6rem",
         {
-          lineHeight: "1rem",
+          lineHeight: "3.75rem",
         },
       ],
       "9xl": [
         "8rem",
         {
-          lineHeight: "1rem",
+          lineHeight: "3.75rem",
         },
       ],
     },

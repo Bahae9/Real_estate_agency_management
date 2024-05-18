@@ -58,6 +58,25 @@ export const initialRateProgress: RateProgressProps = {
   1: 0,
 };
 
+export const profileSchema = z.object({
+  fullName: z
+    .string({ required_error: "Le nom complet est requis" })
+    .min(3, "Le nom complet doit comporter au moins 3 caractères")
+    .max(30, "Le nom complet doit comporter moins de 30 caractères")
+    .regex(/^[a-zA-Z]+(?:\s[a-zA-Z]+)*$/, "Nom invalide"),
+  email: z
+    .string({ required_error: "Email est requis" })
+    .email({ message: "Email est invalide" }),
+  telephone: z.union([
+    z.literal(""),
+    z
+      .string()
+      .regex(/^0[5-7]\d{8}$/, "Numéro de téléphone invalide")
+      .optional(),
+  ]),
+});
+export type ProfileValues = z.infer<typeof profileSchema>;
+
 export const globalRandomReviews: GlobalReviewProps[] = [
   {
     id: 2342,

@@ -13,9 +13,38 @@ export interface TransactionProps {
   idPropriete: number;
 }
 
-export type SharedUserDataProps = {
-  fullName: string;
-  email: string;
+// new
+export type UserDataProps = { userId: number; fullName: string; email: string };
+export type UserFullDataProps = UserDataProps & {
+  phoneNumber?: string;
+  auth: 0 | 1;
 };
 
-export type UserDataProps = SharedUserDataProps & { userId: number };
+export type FeedbackProps = {
+  feedbackId: number;
+  rate: number;
+  feedback: string;
+  date: string;
+};
+export type FullFeedbackProps = UserDataProps & FeedbackProps;
+
+export type ImageData = Buffer | Uint8Array;
+
+export type BienImmobilierProps = {
+  bienImmobilierId: number;
+  type: string;
+  images: ImageData[];
+  updatedAt: string;
+  price: number;
+  transactionType: "vente" | "location";
+  title: string;
+  description: string;
+};
+
+export type BienImmobilierFullProps = BienImmobilierProps & {
+  size: number;
+  location: string;
+  status: "active" | "inactive" | "pending_approval" | "rejected";
+  createdAt: string;
+  added_by: UserDataProps;
+};

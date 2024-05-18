@@ -33,7 +33,7 @@ const TEAM = [
 
 const MeetTeam = () => {
   return (
-    <section>
+    <section className="py-20">
       <div className="container max-w-6xl px-4 md:px-6">
         <div className="flex flex-col items-center justify-center gap-4 text-center">
           <h2 className="text-4xl font-semibold sm:text-5xl">

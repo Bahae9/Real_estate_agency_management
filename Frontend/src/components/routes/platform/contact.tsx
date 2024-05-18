@@ -41,68 +41,111 @@ export default function Contact() {
     });
   }
   return (
-    <Card className="w-full overflow-hidden p-0">
-      <div className="grid grid-cols-1 xl:grid-cols-2">
-        <div className="p-10 xl:p-12 bg-center xl:col-span-2 text-background bg-stone-900">
-          <div className="h-full flex flex-col gap-12 lg:gap-8 justify-between">
-            <div className="space-y-1.5">
-              <h2 className="text-3xl font-bold">Contactez-nous</h2>
-              <p className="opacity-95 font-normal">
-                Nous vous répondrons dès que possible.
-              </p>
-            </div>
-            <div className="flex flex-col gap-6 md:flex-row md:gap-16 lg:gap-12 xl:gap-20 2xl:gap-28">
-              <div className="flex flex-col space-y-1.5">
-                <div className="flex items-center space-x-2">
-                  <Mail size={22} />
-                  <div className="font-meduim text-lg">Email</div>
-                </div>
-                <div className="opacity-95 font-normal">
-                  djaidri.chouaib.24@gmail.com
-                </div>
+    <Card className="w-full flex flex-col overflow-hidden p-0 border-0 rounded-none min-h-[calc(100vh-56px)] lg:min-h-[calc(100vh-60px)]">
+      <div className="p-10 xl:p-12 bg-center xl:col-span-2 text-background bg-stone-900">
+        <div className="h-full flex flex-col gap-12 lg:gap-8 justify-between">
+          <div className="space-y-1.5">
+            <h2 className="text-3xl font-bold">Contactez-nous</h2>
+            <p className="opacity-95 font-normal">
+              Nous vous répondrons dès que possible.
+            </p>
+          </div>
+          <div className="flex flex-col gap-6 md:flex-row md:gap-16 lg:gap-12 xl:gap-20 2xl:gap-28">
+            <div className="flex flex-col space-y-1.5">
+              <div className="flex items-center space-x-2">
+                <Mail size={22} />
+                <div className="font-meduim text-lg">Email</div>
               </div>
-              <div className="flex flex-col space-y-1.5">
-                <div className="flex items-center space-x-2">
-                  <Phone size={22} />
-                  <div className="font-meduim text-lg">Appelez-nous</div>
-                </div>
-                <div className="opacity-95 font-normal">+213 779354842</div>
-              </div>
-              <div className="flex flex-col space-y-1.5">
-                <div className="flex items-center space-x-2">
-                  <MapPin size={22} />
-                  <div className="font-meduim text-lg">Adresse</div>
-                </div>
-                <div className="opacity-95 font-normal">Algérie, Setif</div>
+              <div className="opacity-95 font-normal">
+                djaidri.chouaib.24@gmail.com
               </div>
             </div>
-            <div className="flex items-center space-x-4">
-              <div className="rounded-full p-2 bg-background"></div>
-              <div className="rounded-full p-2 bg-background"></div>
-              <div className="rounded-full p-2 bg-background"></div>
-              <div className="rounded-full p-2 bg-background"></div>
+            <div className="flex flex-col space-y-1.5">
+              <div className="flex items-center space-x-2">
+                <Phone size={22} />
+                <div className="font-meduim text-lg">Appelez-nous</div>
+              </div>
+              <div className="opacity-95 font-normal">+213 779354842</div>
+            </div>
+            <div className="flex flex-col space-y-1.5">
+              <div className="flex items-center space-x-2">
+                <MapPin size={22} />
+                <div className="font-meduim text-lg">Adresse</div>
+              </div>
+              <div className="opacity-95 font-normal">Algérie, Setif</div>
             </div>
           </div>
+          <div className="flex items-center space-x-4">
+            <div className="rounded-full p-2 bg-background"></div>
+            <div className="rounded-full p-2 bg-background"></div>
+            <div className="rounded-full p-2 bg-background"></div>
+            <div className="rounded-full p-2 bg-background"></div>
+          </div>
         </div>
-        <div className="py-4 xl:px-2 xl:pb-0 xl:pt-2 rounded-r-lg">
-          <CardHeader>
-            <CardTitle>Envoyez-nous un message</CardTitle>
-          </CardHeader>
-          <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)}>
-              <CardContent className="space-y-4">
-                <div className="flex flex-col md:flex-row gap-4">
+      </div>
+      <div className="grid md:grid-cols-[3fr_2fr] xl:grid-cols-2 flex-1">
+        <div className="p-4 h-full flex items-center">
+          <div className="w-full">
+            <CardHeader>
+              <CardTitle>Envoyez-nous un message</CardTitle>
+            </CardHeader>
+            <Form {...form}>
+              <form onSubmit={form.handleSubmit(onSubmit)}>
+                <CardContent className="space-y-4">
+                  <div className="flex flex-col md:flex-row gap-4">
+                    <FormField
+                      control={form.control}
+                      name="fullName"
+                      render={({ field }) => (
+                        <FormItem className="flex-1">
+                          <FormLabel>Nom Complet</FormLabel>
+                          <FormControl>
+                            <Input
+                              autoComplete="off"
+                              className={cn(
+                                form.getFieldState("fullName").error &&
+                                  "border-destructive placeholder:text-destructive/60 text-destructive"
+                              )}
+                              {...field}
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <FormField
+                      control={form.control}
+                      name="email"
+                      render={({ field }) => (
+                        <FormItem className="flex-1">
+                          <FormLabel>Email</FormLabel>
+                          <FormControl>
+                            <Input
+                              autoComplete="off"
+                              className={cn(
+                                form.getFieldState("email").error &&
+                                  "border-destructive placeholder:text-destructive/60 text-destructive"
+                              )}
+                              {...field}
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </div>
                   <FormField
                     control={form.control}
-                    name="fullName"
+                    name="messagge"
                     render={({ field }) => (
-                      <FormItem className="flex-1">
-                        <FormLabel>Nom Complet</FormLabel>
+                      <FormItem>
+                        <FormLabel>Message</FormLabel>
                         <FormControl>
-                          <Input
+                          <Textarea
                             autoComplete="off"
                             className={cn(
-                              form.getFieldState("fullName").error &&
+                              "min-h-[88px]",
+                              form.getFieldState("messagge").error &&
                                 "border-destructive placeholder:text-destructive/60 text-destructive"
                             )}
                             {...field}
@@ -112,56 +155,15 @@ export default function Contact() {
                       </FormItem>
                     )}
                   />
-                  <FormField
-                    control={form.control}
-                    name="email"
-                    render={({ field }) => (
-                      <FormItem className="flex-1">
-                        <FormLabel>Email</FormLabel>
-                        <FormControl>
-                          <Input
-                            autoComplete="off"
-                            className={cn(
-                              form.getFieldState("email").error &&
-                                "border-destructive placeholder:text-destructive/60 text-destructive"
-                            )}
-                            {...field}
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                </div>
-                <FormField
-                  control={form.control}
-                  name="messagge"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Message</FormLabel>
-                      <FormControl>
-                        <Textarea
-                          autoComplete="off"
-                          className={cn(
-                            "min-h-[88px]",
-                            form.getFieldState("messagge").error &&
-                              "border-destructive placeholder:text-destructive/60 text-destructive"
-                          )}
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              </CardContent>
-              <CardFooter>
-                <Button className="ml-auto" type="submit">
-                  Envoyer le message
-                </Button>
-              </CardFooter>
-            </form>
-          </Form>
+                </CardContent>
+                <CardFooter>
+                  <Button className="ml-auto" type="submit">
+                    Envoyer le message
+                  </Button>
+                </CardFooter>
+              </form>
+            </Form>
+          </div>
         </div>
         <div className="relative w-full min-h-[296px] h-full">
           <iframe

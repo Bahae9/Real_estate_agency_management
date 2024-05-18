@@ -18,13 +18,13 @@ export const signupSchema = z.object({
   fullName: z
     .string({ required_error: "Le nom complet est requis" })
     .min(3, "Le nom complet doit comporter au moins 3 caractères")
-    .max(30, "Le nom complet doit comporter moins de 30 caractères")
+    .max(50, "Le nom complet doit comporter moins de 50 caractères")
     .regex(/^[a-zA-Z]+(?:\s[a-zA-Z]+)*$/, "Nom invalide"),
   telephone: z.union([
     z.literal(""),
     z
       .string()
-      .regex(/^0[5-7]\d{7}$/, "Numéro de téléphone invalide")
+      .regex(/^0[5-7]\d{8}$/, "Numéro de téléphone invalide")
       .optional(),
   ]),
   email: z

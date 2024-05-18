@@ -48,20 +48,19 @@ const OUR_SERVICES = [
 
 const OurServices = () => {
   return (
-    <section>
-      <div className="container max-w-6xl px-4 md:px-6">
+    <section className="py-20 min-h-[calc(100vh-56px)] lg:min-h-[calc(100vh-60px)] flex justify-center items-center bg-muted">
+      <div className="container max-w-7xl px-4 md:px-6">
         <div className="flex flex-col items-center justify-center gap-4 text-center">
           <h2 className="text-4xl font-semibold sm:text-5xl">Nos Services</h2>
           <p className="max-w-[900px] text-muted-foreground md:text-xl lg:text-base xl:text-xl">
-            Nous offrons des services immobiliers spécialisés en location et
-            vente, axés sur l'expérience utilisateur, la confiance, le conseil,
-            la rapidité, et l'amélioration continue de notre agence.
+            Découvrez notre gamme complète de services conçus pour répondre à
+            vos besoins spécifiques et vous offrir des solutions sur mesure.
           </p>
         </div>
-        <div className="mx-auto grid grid-cols-1 gap-4 pt-10 sm:grid-cols-2 xl:grid-cols-3 lg:gap-8">
+        <div className="mx-auto grid grid-cols-1 gap-4 pt-10 sm:grid-cols-2 xl:grid-cols-3">
           {OUR_SERVICES.map(({ description, Icon, title }) => (
             <div
-              className="rounded-lg border p-6 shadow-sm transition-all"
+              className="rounded-lg border bg-white p-6 shadow-sm transition-all"
               key={title}
             >
               <div className="flex flex-col gap-2">
@@ -70,7 +69,7 @@ const OurServices = () => {
                 </div>
                 <h3 className="text-lg font-semibold">{title}</h3>
                 <p
-                  className="text-muted-foreground line-clamp-4"
+                  className="text-muted-foreground line-clamp-2"
                   title={description}
                 >
                   {description}

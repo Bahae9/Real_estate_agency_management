@@ -71,10 +71,7 @@ export default function Transactions() {
                   <TableCell>{idAcheteur}</TableCell>
                   <TableCell>
                     <Badge
-                      className="text-xs"
-                      variant={
-                        typeTransaction === "vente" ? "third" : "default"
-                      }
+                      variant={typeTransaction === "vente" ? "third" : "forth"}
                     >
                       {typeTransaction}
                     </Badge>

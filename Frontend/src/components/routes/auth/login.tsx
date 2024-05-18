@@ -10,11 +10,12 @@ import {
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { DEFAULT_LOGIN_VALUES, LoginValues, loginSchema } from "./data";
 import { toast } from "@/components/ui/use-toast";
 import { cn } from "@/lib/utils";
 import { MoveLeft } from "lucide-react";
+import { useAuth } from "@/components/contexts/auth-context";
 
 export default function Login() {
   const form = useForm<LoginValues>({
@@ -22,18 +23,38 @@ export default function Login() {
     mode: "onBlur",
     defaultValues: DEFAULT_LOGIN_VALUES,
   });
-
-  function onSubmit(data: LoginValues) {
-    toast({
-      title: "You submitted the following values:",
-      description: (
-        <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-          <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-        </pre>
-      ),
-    });
+  const navigate = useNavigate();
+  const { saveToken, token } = useAuth();
+  if (token) {
+    return <Navigate to={"/"} />;
   }
-
+  async function onSubmit(data: LoginValues) {
+    try {
+      const response = await fetch("http://localhost:8080/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(
+          error.message ||
+            error.detail ||
+            "Failed to sign in. Please try again later."
+        );
+      }
+      const responseData = await response.json();
+      saveToken(responseData.token, responseData.expiresIn);
+      navigate("/");
+    } catch (error: any) {
+      toast({
+        description: error.message,
+        variant: "destructive",
+      });
+    }
+  }
   return (
     <div className="w-full lg:grid lg:grid-cols-2 min-h-screen">
       <div className="flex flex-col p-4 min-h-screen">
