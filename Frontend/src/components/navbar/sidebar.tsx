@@ -1,13 +1,13 @@
-import { CircleGauge, Settings, Power, Package2 } from "lucide-react";
+import { CircleGauge, Package2, Power, Settings } from "lucide-react";
 
 import { Button, buttonVariants } from "@/components/ui/button";
-import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
-import { SIDEBAR_ITEMS } from "./data";
 import { cn } from "@/lib/utils";
 import { isActiveSideBar } from "@/utils/paths";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/auth-context";
+import { SIDEBAR_ITEMS } from "./data";
 
-const Sidebar = () => {
+const Sidebar = ({ isAdmin }: { isAdmin: boolean }) => {
   const { pathname } = useLocation();
   const { isAuth, clearToken } = useAuth();
   const navigate = useNavigate();
@@ -41,7 +41,7 @@ const Sidebar = () => {
                 {label}
               </NavLink>
             ))}
-            {isAuth && (
+            {isAuth && !isAdmin && (
               <NavLink
                 to={"/dashboard"}
                 end
@@ -60,7 +60,7 @@ const Sidebar = () => {
                 Tableau de bord
               </NavLink>
             )}
-            {/* {isAdmin && (
+            {isAdmin && (
               <NavLink
                 to={"/admin"}
                 end
@@ -77,7 +77,7 @@ const Sidebar = () => {
                 <CircleGauge className="h-5 w-5" />
                 Administrateur
               </NavLink>
-            )} */}
+            )}
           </nav>
         </div>
         <div className="mt-auto pb-4 w-full space-y-1">

@@ -27,9 +27,9 @@ export const AuthProvider = () => {
     navigate("/");
   };
 
-  const clearToken = () => {
+  const clearToken = (to: string = "/login") => {
     setToken(null);
-    navigate("/login", { replace: true });
+    navigate(to, { replace: true });
   };
 
   const value = useMemo(
@@ -44,7 +44,7 @@ export const AuthProvider = () => {
 
   useEffect(() => {
     if (!isAuth && ["/login", "/signup"].includes(pathname)) {
-      clearToken();
+      clearToken(pathname);
     }
   }, [isAuth]);
 

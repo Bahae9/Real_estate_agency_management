@@ -1,16 +1,17 @@
-import { CircleGauge, Power, Settings, Menu, Package2 } from "lucide-react";
+import { CircleGauge, Menu, Package2, Power, Settings } from "lucide-react";
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
-import { SIDEBAR_ITEMS } from "./data";
 import { isActiveSideBar } from "@/utils/paths";
 import { useAuth } from "../contexts/auth-context";
+import { SIDEBAR_ITEMS } from "./data";
 
-const SidebarMobile = () => {
+const SidebarMobile = ({ isAdmin }: { isAdmin: boolean }) => {
   const { pathname } = useLocation();
   const { isAuth, clearToken } = useAuth();
+
   const navigate = useNavigate();
   return (
     <Sheet>
@@ -53,7 +54,7 @@ const SidebarMobile = () => {
                 {label}
               </NavLink>
             ))}
-            {isAuth && (
+            {isAuth && !isAdmin && (
               <NavLink
                 to={"/dashboard"}
                 end
@@ -72,7 +73,7 @@ const SidebarMobile = () => {
                 Tableau de bord
               </NavLink>
             )}
-            {/* {isAdmin && (
+            {isAdmin && (
               <NavLink
                 to={"/admin"}
                 end
@@ -89,7 +90,7 @@ const SidebarMobile = () => {
                 <CircleGauge className="h-5 w-5" />
                 Administrateur
               </NavLink>
-            )} */}
+            )}
           </div>
         </nav>
         <div className="mt-auto w-full space-y-1">
