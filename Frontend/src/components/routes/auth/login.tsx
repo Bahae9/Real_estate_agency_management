@@ -10,12 +10,13 @@ import {
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate, useRevalidator } from "react-router-dom";
 import { DEFAULT_LOGIN_VALUES, LoginValues, loginSchema } from "./data";
 import { toast } from "@/components/ui/use-toast";
 import { cn } from "@/lib/utils";
 import { MoveLeft } from "lucide-react";
 import { useAuth } from "@/components/contexts/auth-context";
+import { jwtDecode } from "jwt-decode";
 
 export default function Login() {
   const form = useForm<LoginValues>({
@@ -24,6 +25,7 @@ export default function Login() {
     defaultValues: DEFAULT_LOGIN_VALUES,
   });
   const navigate = useNavigate();
+  const revalidator = useRevalidator();
   const { saveToken, token } = useAuth();
   if (token) {
     return <Navigate to={"/"} />;
@@ -46,8 +48,14 @@ export default function Login() {
         );
       }
       const responseData = await response.json();
-      saveToken(responseData.token, responseData.expiresIn);
-      navigate("/");
+      saveToken(responseData.token);
+      const decoded = jwtDecode(responseData.token) as { roles: string };
+      if (decoded?.roles === "ADMIN") {
+        navigate("/admin");
+      } else {
+        navigate("/");
+      }
+      revalidator.revalidate();
     } catch (error: any) {
       toast({
         description: error.message,

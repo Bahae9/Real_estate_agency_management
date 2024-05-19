@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const Hero = () => {
   return (
     <section className="flex items-center py-8">
-      <div className="px-6 md:px-8 flex flex-col 2xl:flex-row-reverse items-center gap-8 text-center 2xl:text-start">
+      <div className="w-full px-6 md:px-8 flex flex-col 2xl:flex-row-reverse items-center gap-8 text-center 2xl:text-start">
         <div className="flex-1 max-w-xl 2xl:max-w-max overflow-hidden object-cover flex justify-center items-center">
           <img alt="Hero" src="/backgrounds/hero.jpg" className="rounded-lg" />
         </div>

@@ -12,13 +12,15 @@ import {
   BreadcrumbSeparator,
 } from "../ui/breadcrumb";
 import SidebarMobile from "./sidebar-mobile";
+import { useAuth } from "../contexts/auth-context";
 
-const Navbar = ({ isAuth, isAdmin }: { isAuth: boolean; isAdmin: boolean }) => {
+const Navbar = () => {
   const { pathname } = useLocation();
   const breadcrumbItems = generateBreadcrumbPaths(pathname);
+  const { isAuth } = useAuth();
   return (
     <header className="flex h-14 lg:h-[60px] items-center gap-4 border-b bg-muted/40 px-6 md:px-8">
-      <SidebarMobile isAuth={isAuth} isAdmin={isAdmin} />
+      <SidebarMobile />
       <div className="w-full flex-1">
         <Breadcrumb className="hidden lg:flex">
           <BreadcrumbList>

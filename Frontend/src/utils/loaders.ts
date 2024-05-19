@@ -1,11 +1,6 @@
 export async function authLoader() {
   const storedToken = localStorage.getItem("token");
-  const storedExpiration = localStorage.getItem("tokenExpiration");
-  if (!storedToken || !storedExpiration) {
-    return { isAuth: false };
-  }
-  const expirationTime = new Date(parseInt(storedExpiration, 10));
-  if (new Date() >= expirationTime) {
+  if (!storedToken) {
     return { isAuth: false };
   }
   try {
