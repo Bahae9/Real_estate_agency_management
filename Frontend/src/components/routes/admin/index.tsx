@@ -6,17 +6,16 @@ import Transactions from "./_components/transactions";
 const Admin = () => {
   const statusCards = [
     {
-      title: "Immobiliers",
-      description:
-        "Gère les données des propriétés disponibles à la vente ou à la location.",
+      title: "Real Estates",
+      description: "Manages data for properties available for sale or rent.",
       total: 20,
       Icon: Building,
-      to: "biem-estate",
+      to: "real-estates",
     },
     {
       title: "Clients",
       description:
-        "Contient les informations sur les clients, incluant acheteurs et vendeurs.",
+        "Contains information about clients, including buyers and sellers.",
       total: 10,
       Icon: Users,
       to: "clients",
@@ -24,22 +23,22 @@ const Admin = () => {
     {
       title: "Agents",
       description:
-        "Répertorie les agents et leurs détails pour faciliter la gestion des interactions.",
+        "Lists agents and their details to facilitate interaction management.",
       total: 12,
       Icon: Pickaxe,
       to: "agents",
     },
     {
-      title: "Retour d'information",
-      description:
-        "Archive les retours et les commentaires des utilisateurs sur les services.",
+      title: "Feedbacks",
+      description: "Archives user feedback and comments on services.",
       total: 0,
       Icon: MessageSquare,
-      to: "feedback",
+      to: "feedbacks",
     },
   ];
+
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 p-6 md:p-8">
       <div className="grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-4 gap-4">
         {statusCards.map((el) => (
           <StatusCard key={el.to} {...el} />

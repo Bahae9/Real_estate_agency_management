@@ -21,6 +21,7 @@ import Terms from "./components/routes/platform/terms";
 import { Toaster } from "./components/ui/toaster";
 import { AuthProvider } from "./components/contexts/auth-context";
 import { authLoader } from "./utils/loaders";
+import RealEstates from "./components/routes/admin/_components/real-estates";
 
 const router = createBrowserRouter([
   {
@@ -34,7 +35,7 @@ const router = createBrowserRouter([
         element: <Root />,
         children: [
           {
-            path: "/",
+            path: "",
             element: <Home />,
           },
           {
@@ -82,7 +83,10 @@ const router = createBrowserRouter([
           },
           {
             path: "admin",
-            element: <Admin />,
+            children: [
+              { path: "", element: <Admin /> },
+              { path: "real-estates", element: <RealEstates /> },
+            ],
           },
           {
             path: "terms",
