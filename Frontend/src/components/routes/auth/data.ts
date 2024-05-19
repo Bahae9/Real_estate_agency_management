@@ -2,11 +2,11 @@ import { z } from "zod";
 
 export const loginSchema = z.object({
   email: z
-    .string({ required_error: "Email est requis" })
-    .email({ message: "Email est invalide" }),
+    .string({ required_error: "Email is required" })
+    .email({ message: "Invalid email" }),
   password: z
-    .string({ required_error: "Le mot de passe est requis" })
-    .min(8, { message: "Le mot de passe est invalide" }),
+    .string({ required_error: "Password is required" })
+    .min(8, { message: "Invalid password" }),
 });
 export type LoginValues = z.infer<typeof loginSchema>;
 export const DEFAULT_LOGIN_VALUES = {
@@ -16,24 +16,24 @@ export const DEFAULT_LOGIN_VALUES = {
 
 export const signupSchema = z.object({
   fullName: z
-    .string({ required_error: "Le nom complet est requis" })
-    .min(3, "Le nom complet doit comporter au moins 3 caractères")
-    .max(50, "Le nom complet doit comporter moins de 50 caractères")
-    .regex(/^[a-zA-Z]+(?:\s[a-zA-Z]+)*$/, "Nom invalide"),
+    .string({ required_error: "Full name is required" })
+    .min(3, "Full name must be at least 3 characters long")
+    .max(50, "Full name must be less than 50 characters long")
+    .regex(/^[a-zA-Z]+(?:\s[a-zA-Z]+)*$/, "Invalid name"),
   telephone: z.union([
     z.literal(""),
     z
       .string()
-      .regex(/^0[5-7]\d{8}$/, "Numéro de téléphone invalide")
+      .regex(/^0[5-7]\d{8}$/, "Invalid phone number")
       .optional(),
   ]),
   email: z
-    .string({ required_error: "Email est requis" })
-    .email({ message: "Email est invalide" }),
+    .string({ required_error: "Email is required" })
+    .email({ message: "Invalid email" }),
   password: z
-    .string({ required_error: "Le mot de passe est requis" })
-    .min(8, { message: "Le mot de passe doit comporter au moins 8 caractères" })
-    .max(30, "Le mot de passe doit comporter moins de 30 caractères"),
+    .string({ required_error: "Password is required" })
+    .min(8, { message: "Password must be at least 8 characters long" })
+    .max(30, "Password must be less than 30 characters long"),
 });
 export type SignupValues = z.infer<typeof signupSchema>;
 export const DEFAULT_SIGNUP_VALUES = {

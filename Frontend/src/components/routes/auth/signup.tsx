@@ -65,17 +65,17 @@ export default function Signup() {
       <div className="flex flex-col p-4 min-h-screen">
         <Link to="/" className="hover:underline flex items-center gap-2">
           <MoveLeft />
-          Back to home Page
+          Back to home page
         </Link>
         <div className="flex-1 flex justify-center items-center py-4">
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)}>
               <div className="mx-auto grid w-full max-w-[340px] gap-6">
                 <div className="grid gap-2 text-center">
-                  <h1 className="text-3xl font-bold">S'inscrire</h1>
+                  <h1 className="text-3xl font-bold">Sign Up</h1>
                   <p className="text-balance text-muted-foreground">
-                    Entrez vos informations pour créer un compte et profiter de
-                    tous nos services
+                    Enter your information to create an account and enjoy all
+                    our services
                   </p>
                 </div>
                 <div className="grid gap-4">
@@ -84,7 +84,7 @@ export default function Signup() {
                     name="fullName"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Nom Complet</FormLabel>
+                        <FormLabel>Full Name</FormLabel>
                         <FormControl>
                           <Input
                             autoComplete="off"
@@ -105,7 +105,7 @@ export default function Signup() {
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel>
-                          Numéro de téléphone{" "}
+                          Phone Number{" "}
                           <span
                             className={cn(
                               "text-muted-foreground ml-1",
@@ -113,7 +113,7 @@ export default function Signup() {
                                 "text-destructive/80"
                             )}
                           >
-                            {`(Non requis)`}
+                            {`(Optional)`}
                           </span>
                         </FormLabel>
                         <FormControl>
@@ -155,7 +155,7 @@ export default function Signup() {
                     name="password"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Mot de passe</FormLabel>
+                        <FormLabel>Password</FormLabel>
                         <FormControl>
                           <Input
                             type="password"
@@ -171,13 +171,13 @@ export default function Signup() {
                     )}
                   />
                   <Button type="submit" className="w-full">
-                    S'inscrire
+                    Sign Up
                   </Button>
                 </div>
                 <div className="mt-4 text-center text-sm">
-                  Vous avez déjà un compte ?{" "}
+                  Already have an account?{" "}
                   <Link to="/login" className="underline font-semibold">
-                    Connexion
+                    Log In
                   </Link>
                 </div>
               </div>

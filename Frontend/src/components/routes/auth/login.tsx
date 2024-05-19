@@ -68,17 +68,16 @@ export default function Login() {
       <div className="flex flex-col p-4 min-h-screen">
         <Link to="/" className="hover:underline flex items-center gap-2">
           <MoveLeft />
-          Retour à la page d'accueil
+          Back to homepage
         </Link>
         <div className="flex-1 flex justify-center items-center py-4">
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)}>
               <div className="mx-auto grid w-full max-w-[350px] gap-6">
                 <div className="grid gap-2 text-center">
-                  <h1 className="text-3xl font-bold">Connexion</h1>
+                  <h1 className="text-3xl font-bold">Login</h1>
                   <p className="text-balance text-muted-foreground">
-                    Entrez votre email ci-dessous pour vous connecter à votre
-                    compte
+                    Enter your email below to log in to your account
                   </p>
                 </div>
                 <div className="grid gap-4">
@@ -108,7 +107,7 @@ export default function Login() {
                     name="password"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Mot de passe</FormLabel>
+                        <FormLabel>Password</FormLabel>
                         <FormControl>
                           <Input
                             placeholder="••••••••"
@@ -125,13 +124,13 @@ export default function Login() {
                     )}
                   />
                   <Button type="submit" className="w-full">
-                    Connexion
+                    Login
                   </Button>
                 </div>
                 <div className="mt-4 text-center text-sm">
-                  Vous n&apos;avez pas de compte ?{" "}
+                  Don't have an account?{" "}
                   <Link to="/signup" className="underline font-semibold">
-                    Inscrivez-vous
+                    Sign up
                   </Link>
                 </div>
               </div>
