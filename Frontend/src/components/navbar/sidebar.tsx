@@ -1,19 +1,16 @@
 import { CircleGauge, Settings, Power, Package2 } from "lucide-react";
 
 import { Button, buttonVariants } from "@/components/ui/button";
-import { Link, NavLink, useLocation } from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { SIDEBAR_ITEMS } from "./data";
 import { cn } from "@/lib/utils";
 import { isActiveSideBar } from "@/utils/paths";
+import { useAuth } from "../contexts/auth-context";
 
-const Sidebar = ({
-  isAuth,
-  isAdmin,
-}: {
-  isAuth: boolean;
-  isAdmin: boolean;
-}) => {
+const Sidebar = () => {
   const { pathname } = useLocation();
+  const { isAuth, clearToken } = useAuth();
+  const navigate = useNavigate();
   return (
     <div className="hidden border-r bg-muted/40 lg:block">
       <div className="flex h-full max-h-screen flex-col gap-2 px-2 lg:px-4 lg:gap-4">
@@ -44,7 +41,7 @@ const Sidebar = ({
                 {label}
               </NavLink>
             ))}
-            {isAuth && !isAdmin && (
+            {isAuth && (
               <NavLink
                 to={"/dashboard"}
                 end
@@ -63,7 +60,7 @@ const Sidebar = ({
                 Tableau de bord
               </NavLink>
             )}
-            {isAdmin && (
+            {/* {isAdmin && (
               <NavLink
                 to={"/admin"}
                 end
@@ -80,7 +77,7 @@ const Sidebar = ({
                 <CircleGauge className="h-5 w-5" />
                 Administrateur
               </NavLink>
-            )}
+            )} */}
           </nav>
         </div>
         <div className="mt-auto pb-4 w-full space-y-1">
@@ -106,6 +103,10 @@ const Sidebar = ({
               <Button
                 variant={"ghost"}
                 className="justify-start gap-2 items-center w-full hover:bg-destructive hover:text-destructive-foreground"
+                onClick={() => {
+                  clearToken();
+                  navigate("/login");
+                }}
               >
                 <Power className="h-5 w-5" />
                 Déconnexion

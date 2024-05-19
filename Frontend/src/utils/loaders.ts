@@ -10,9 +10,9 @@ export async function authLoader() {
   }
   try {
     const response = await fetch("http://localhost:8080/auth/check-token", {
-      method: "POST",
+      method: "GET",
       headers: {
-        Authorization: `Bearer ${storedToken}`,
+        Authorization: `Bearer ${storedToken.slice(1, storedToken.length - 1)}`,
       },
     });
     if (response.ok) {

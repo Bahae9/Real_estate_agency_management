@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 const Slider = React.forwardRef<
   React.ElementRef<typeof SliderPrimitive.Root>,
   React.ComponentPropsWithoutRef<typeof SliderPrimitive.Root>
->(({ className, min, max, step, value, onValueChange, ...props }) => {
+>(({ className, min, max, step, value, onValueChange, ...props }, ref) => {
   const handleValueChange = (newValues: number[]) => {
     if (onValueChange) {
       onValueChange(newValues);
@@ -15,6 +15,7 @@ const Slider = React.forwardRef<
 
   return (
     <SliderPrimitive.Root
+      ref={ref}
       min={min}
       max={max}
       step={step}
