@@ -45,8 +45,17 @@ public class RealEstateController {
     }
 
     @GetMapping("/search")
-    public List<RealEstate> search(@RequestParam(value = "keyword", required = false) String keyword, RealEstate model) {
-        List<RealEstate> items = realEstateService.searchRealEstates(keyword);
-        return items;
+    public List<RealEstate> search(
+            @RequestParam(value = "keyword", required = false) String title,
+            @RequestParam(value = "transactionType", required = false) RealEstate.TransactionType transactionType,
+            @RequestParam(value = "minPrice", required = false) Integer minPrice,
+            @RequestParam(value = "maxPrice", required = false) Integer maxPrice,
+            @RequestParam(value = "sortingBy", required = false, defaultValue = "desc") String sortingBy,
+            @RequestParam(value = "pricePlage", required = false) String pricePlage,
+            @RequestParam(value = "areaPlage", required = false) String areaPlage,
+            @RequestParam(value = "categories", required = false) List<String> categories
+            ) {
+        
+        return realEstateService.searchRealEstates(title, transactionType, minPrice, maxPrice, sortingBy, pricePlage, areaPlage, categories);
     }
 }
